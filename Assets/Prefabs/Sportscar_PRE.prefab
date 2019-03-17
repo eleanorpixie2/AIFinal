@@ -397,6 +397,8 @@ GameObject:
   - component: {fileID: 2968566669634442150}
   - component: {fileID: 1462229458028334664}
   - component: {fileID: 3355283650343923728}
+  - component: {fileID: 5314242981277468824}
+  - component: {fileID: 6309706199521505353}
   m_Layer: 0
   m_Name: Sportscar_PRE
   m_TagString: Untagged
@@ -450,8 +452,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.067669, y: 0.6254332, z: 3.4632263}
-  m_Center: {x: 0.016543388, y: 0.60322297, z: 0.21177673}
+  m_Size: {x: 1.594944, y: 0.6254332, z: 3.4632263}
+  m_Center: {x: 0.25290585, y: 0.60322297, z: 0.21177673}
 --- !u!114 &3355283650343923728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,3 +466,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e12f388bd925074dbe603a59e81b116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &5314242981277468824
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174880}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3918343, y: 0.6254332, z: 3.318039}
+  m_Center: {x: 0.26008987, y: 0.60322297, z: 0.20806503}
+--- !u!114 &6309706199521505353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a313f02f6cfa2b2498fb9428949ae314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerNumber: 0
+  lapTime: 0
+  reachedGoal: 0
