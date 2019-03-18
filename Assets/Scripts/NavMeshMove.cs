@@ -52,7 +52,7 @@ public class NavMeshMove : MonoBehaviour
         {
             agent.speed = 0;
             GetComponent<Stats>().reachedGoal = true;
-            agent.transform.position = new Vector3(other.transform.position.x-3, agent.transform.position.y, other.transform.position.z-3);
+            //agent.transform.position = new Vector3(other.transform.position.x-3, agent.transform.position.y, other.transform.position.z-3);
         }
     }
 

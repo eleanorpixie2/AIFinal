@@ -31,10 +31,11 @@ public class Touch : MonoBehaviour
         {
             otherPlayer.GetComponent<Rigidbody>().AddForce(0, 2,7);
             otherPlayer.GetComponent<Rigidbody>().drag += .5f;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, -120, 0), .5f);
         }
         else if(currentDirection == PushDirection.Left)
         {
-            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, -60, 0), .5f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, -60, 0), .5f);
             otherPlayer.GetComponent<Rigidbody>().AddForce(0, -2, -7);
             //GetComponent<Rigidbody>().velocity += new Vector3(0, 0, -.05f);
             otherPlayer.GetComponent<Rigidbody>().drag += .5f;
