@@ -43,8 +43,7 @@ public class Touch : MonoBehaviour
         else if (currentDirection == PushDirection.Front)
         {
             //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, -60, 0), .5f);
-            otherPlayer.GetComponent<Rigidbody>().AddForce(-7, 2, 0);
-            transform.position += new Vector3(0, -7, 0);
+            otherPlayer.GetComponent<Rigidbody>().AddForce(7, 2, 0);
         }
 
     }

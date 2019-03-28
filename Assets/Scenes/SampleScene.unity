@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.3910623, g: 0.36314946, b: 0.32841173, a: 1}
+  m_IndirectSpecularColor: {r: 0.3910585, g: 0.3631357, b: 0.3284105, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1149,6 +1149,19 @@ MonoBehaviour:
   goal: {fileID: 1091714998}
   speedRangeMax: 25
   speed: 0
+--- !u!114 &928538265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928538257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec2ecd169c729a148a13639aedeb3ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkDistance: 3
 --- !u!1001 &943624827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2131,7 +2144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 474874, guid: f6f35ee947f49f046b66897b4a6ae8a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.7
+      value: 3.215
       objectReference: {fileID: 0}
     - target: {fileID: 474874, guid: f6f35ee947f49f046b66897b4a6ae8a8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2139,7 +2152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 474874, guid: f6f35ee947f49f046b66897b4a6ae8a8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.8
+      value: -6.155
       objectReference: {fileID: 0}
     - target: {fileID: 474874, guid: f6f35ee947f49f046b66897b4a6ae8a8, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2195,6 +2208,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5474870, guid: f6f35ee947f49f046b66897b4a6ae8a8, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 6309706199521505353, guid: f6f35ee947f49f046b66897b4a6ae8a8,
         type: 3}
       propertyPath: _playerNumber
@@ -2204,10 +2221,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: cea3fbd07e833a0489c510b8d50cfbf5, type: 2}
-    - target: {fileID: 5474870, guid: f6f35ee947f49f046b66897b4a6ae8a8, type: 3}
-      propertyPath: m_AngularDrag
-      value: 0.05
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11474870, guid: f6f35ee947f49f046b66897b4a6ae8a8, type: 3}
     - {fileID: 5474870, guid: f6f35ee947f49f046b66897b4a6ae8a8, type: 3}
