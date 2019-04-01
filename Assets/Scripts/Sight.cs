@@ -5,7 +5,6 @@ using UnityEngine;
 public class Sight : MonoBehaviour
 {
     Rigidbody rgd;
-    public float checkDistance= 3;
     bool needsToGetAround;
     Vector3 intialSpeed;
 
@@ -39,7 +38,8 @@ public class Sight : MonoBehaviour
         }
         else
         {
-            needsToGetAround = false;
+            if (needsToGetAround)
+                needsToGetAround = false;
             if (intialSpeed != rgd.velocity)
             {
                 rgd.velocity = intialSpeed;
