@@ -83,7 +83,7 @@ public class Touch : MonoBehaviour
     {
         if(other.tag=="Player")
         {
-            other.GetComponent<NavMeshAgent>().speed -= 10;
+           // other.GetComponent<NavMeshAgent>().speed -= 10;
         }
     }
     //If no longer pushing a car

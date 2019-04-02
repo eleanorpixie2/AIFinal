@@ -19,7 +19,7 @@ public class NavMeshMove : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         goal.position = new Vector3(goal.position.x, transform.position.y, goal.transform.position.z);
         agent.destination = goal.position;
-
+        
 
         //Set the max speed for this run, is random within a range every run
         SetRunSpeed();
