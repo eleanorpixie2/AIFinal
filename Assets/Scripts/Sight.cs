@@ -104,9 +104,9 @@ public class Sight : MonoBehaviour
             currentState = GetAroundFSM.ContinueDriving;
             float direction = Math.Abs(other.gameObject.transform.position.z) - Math.Abs(transform.position.z);
             if (direction < 0)
-                rgd.velocity += new Vector3(-2, 0, 2);
+                rgd.velocity += new Vector3(0, 0, 2);
             if (direction > 0)
-                rgd.velocity += new Vector3(-2, 0, -2);
+                rgd.velocity += new Vector3(0, 0, -2);
         }
     }
 }

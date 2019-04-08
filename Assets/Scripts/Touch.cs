@@ -44,7 +44,7 @@ public class Touch : MonoBehaviour
         {
             //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, -60, 0), .5f);
             //To-Do add rotation to front player
-            otherPlayer.GetComponent<Rigidbody>().AddForce(7, 2, 0);
+            otherPlayer.GetComponent<Rigidbody>().AddForce(-7, 2, 0);
         }
 
     }
@@ -76,14 +76,6 @@ public class Touch : MonoBehaviour
         if (other.tag == "Player")
         {
             DetermineWhatSideToPushBack(other);
-        }
-    }
-    //If continuely pushing another car
-    private void OnTriggerStay(Collider other)
-    {
-        if(other.tag=="Player")
-        {
-           // other.GetComponent<NavMeshAgent>().speed -= 10;
         }
     }
     //If no longer pushing a car

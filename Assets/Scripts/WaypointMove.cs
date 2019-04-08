@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WaypointMove : MonoBehaviour
 {
@@ -20,38 +21,49 @@ public class WaypointMove : MonoBehaviour
     public int maxSpeed;
     private float curSpeed;
     private Rigidbody rgd;
-    private float curTime = 0;
-    private float second = 0;
+    NavMeshAgent agent;
+    private float velocity=0;
     // Start is called before the first frame update
     void Start()
     {
         setNumber = 1;
         SetRunSpeed();
+        SetNewTargetPoint();
         rgd = GetComponent<Rigidbody>();
-        rgd.drag = 0;
+        agent = GetComponent<NavMeshAgent>();
+        agent.destination = targetPoint;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.LookAt(targetPoint);
-        curTime += Time.deltaTime;
         //If not at goal then speed up to max speed
-        if (curSpeed <= maxSpeed && !GetComponent<Stats>().reachedGoal && curTime>=second+.45f)
+        if (!GetComponent<Stats>().reachedGoal && agent.speed <= maxSpeed)
         {
-            curSpeed += 1f;
-            second+=.45f;
+            //    curSpeed =Mathf.SmoothDamp(transform.position.x,targetPoint.x, ref velocity,11,maxSpeed);
+            //    transform.position = new Vector3(curSpeed, transform.position.y, transform.position.z);
+            agent.speed += agent.acceleration;
+            if (curSpeed < agent.speed)
+                curSpeed = agent.speed;
         }
-        rgd.velocity += transform.forward * curSpeed;
-
-        //s=Vo*t + (a(t^2)/2)
-        //t=(Vo/a) or (Vo/V1)/a
-        //rgd.AddForce(new Vector3(-maxSpeed,0,0),ForceMode.Acceleration);
-        if(transform.position.x== targetPoint.x
-            || transform.position.x >= targetPoint.x)
+        else
         {
-            setNumber++;
-            SetNewTargetPoint();
+            agent.speed = 0;
+        }
+
+            //s=Vo*t + (a(t^2)/2)
+            //t=(Vo/a) or (Vo/V1)/a
+            //rgd.AddForce(new Vector3(-maxSpeed,0,0),ForceMode.Acceleration);
+            if (transform.position.x== targetPoint.x
+            || transform.position.x <= targetPoint.x || Mathf.Abs(transform.position.x-targetPoint.x)<2)
+        {
+            if (setNumber < 9)
+            {
+                setNumber++;
+                SetNewTargetPoint();
+                agent.destination = targetPoint;
+                agent.speed = curSpeed;
+            }
         }
     }
 
