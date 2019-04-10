@@ -46,6 +46,10 @@ public class Touch : MonoBehaviour
             //To-Do add rotation to front player
             otherPlayer.GetComponent<Rigidbody>().AddForce(-7, 2, 0);
         }
+        else
+        {
+            transform.rotation = startingRotation;
+        }
 
     }
 

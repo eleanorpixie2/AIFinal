@@ -19,51 +19,68 @@ public class WaypointMove : MonoBehaviour
     private int setNumber;
     private Vector3 targetPoint;
     public int maxSpeed;
-    private float curSpeed;
-    private Rigidbody rgd;
-    NavMeshAgent agent;
-    private float velocity=0;
+    public float curSpeed;
+    float accel = 1.8f;
+    float inertia = 0.9f;
+    public enum MovementState { Accelerating,Slowing,Stop};
+    private MovementState _movementState = MovementState.Accelerating;
     // Start is called before the first frame update
     void Start()
     {
         setNumber = 1;
         SetRunSpeed();
         SetNewTargetPoint();
-        rgd = GetComponent<Rigidbody>();
-        agent = GetComponent<NavMeshAgent>();
-        agent.destination = targetPoint;
+
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        //If not at goal then speed up to max speed
-        if (!GetComponent<Stats>().reachedGoal && agent.speed <= maxSpeed)
-        {
-            //    curSpeed =Mathf.SmoothDamp(transform.position.x,targetPoint.x, ref velocity,11,maxSpeed);
-            //    transform.position = new Vector3(curSpeed, transform.position.y, transform.position.z);
-            agent.speed += agent.acceleration;
-            if (curSpeed < agent.speed)
-                curSpeed = agent.speed;
-        }
-        else
-        {
-            agent.speed = 0;
-        }
 
-            //s=Vo*t + (a(t^2)/2)
-            //t=(Vo/a) or (Vo/V1)/a
-            //rgd.AddForce(new Vector3(-maxSpeed,0,0),ForceMode.Acceleration);
-            if (transform.position.x== targetPoint.x
-            || transform.position.x <= targetPoint.x || Mathf.Abs(transform.position.x-targetPoint.x)<2)
+        switch (_movementState)
+        {
+            case MovementState.Accelerating:
+                Accell();
+                break;
+            case MovementState.Slowing:
+                Slow();
+                break;
+            case MovementState.Stop:
+                curSpeed = 0;
+                break;
+        }
+        //s=Vo*t + (a(t^2)/2)
+        //t=(Vo/a) or (Vo/V1)/a
+        if ((Mathf.Abs(targetPoint.x) - Mathf.Abs(transform.position.x)) < 5)
         {
             if (setNumber < 9)
             {
                 setNumber++;
                 SetNewTargetPoint();
-                agent.destination = targetPoint;
-                agent.speed = curSpeed;
             }
+        }
+    }
+
+    public void Accell()
+    {
+
+        curSpeed+=Time.deltaTime*accel;
+        transform.position = Vector3.MoveTowards(transform.position, targetPoint, curSpeed * Time.deltaTime);
+        if (curSpeed > maxSpeed)
+        {
+            curSpeed = maxSpeed;
+        }
+
+    }
+    public void Slow()
+    {
+
+        curSpeed *= inertia;
+        transform.Translate(Time.deltaTime * curSpeed, 0, 0);
+
+        if (curSpeed <= 1.0)
+        {
+            curSpeed = 0;
         }
     }
 
@@ -114,7 +131,15 @@ public class WaypointMove : MonoBehaviour
         if(other.tag=="Goal")
         {
             GetComponent<Stats>().reachedGoal = true;
-            curSpeed= 0;
+            _movementState = MovementState.Slowing;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Goal")
+        {
+            _movementState = MovementState.Stop;
         }
     }
 }

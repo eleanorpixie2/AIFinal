@@ -11,7 +11,8 @@ public class Sight : MonoBehaviour
 
     public enum GetAroundFSM { MoveRight,MoveLeft,ContinueDriving};
     private GetAroundFSM currentState;
-
+    public enum MovementType { NavMesh,WayPoints,AStar};
+    public MovementType _movementType;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,17 +24,25 @@ public class Sight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 fwd=Vector3.zero;
         //fwd vector
-        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        switch(_movementType)
+        {
+            case MovementType.NavMesh:
+                fwd = transform.TransformDirection(Vector3.forward);
+                break;
+            case MovementType.WayPoints:
+                fwd = -transform.TransformDirection(Vector3.forward);
+                fwd.y = .5f;
+                break;
+        }
         //raycast result
         RaycastHit hit;
-        Debug.DrawRay(transform.position, fwd, Color.red,.5f,true);
         //do a raycast
         if (Physics.Raycast(transform.position, fwd, out hit,10))
         { 
-            print("move");
             //if player then move
-            if (hit.collider.tag == "Player")
+            if (hit.collider.tag == "Player" && currentState== GetAroundFSM.ContinueDriving)
                 DetermineDirection(hit.collider.gameObject);
             //otherwise ignore
             else
@@ -83,17 +92,36 @@ public class Sight : MonoBehaviour
             currentState = GetAroundFSM.MoveLeft;
         else if (direction < 0)
             currentState = GetAroundFSM.MoveRight;
+        else
+            currentState = GetAroundFSM.MoveLeft;
     }
 
     //move to the right
     void GetAroundOtherCarRight()
     {
-        rgd.velocity += new Vector3(1,0,2);
+        switch (_movementType)
+        {
+            case MovementType.NavMesh:
+                rgd.velocity += new Vector3(-1, 0, 2);
+                break;
+            case MovementType.WayPoints:
+                rgd.velocity = new Vector3(-1, 0, 2);
+                break;
+        }
     }
     //move to the left
     void GetAroundOtherCarLeft()
     {
-        rgd.velocity += new Vector3(1, 0, -2);
+
+        switch(_movementType)
+        {
+            case MovementType.NavMesh:
+                rgd.velocity += new Vector3(-1, 0, -2);
+            break;
+            case MovementType.WayPoints:
+                rgd.velocity = new Vector3(-1, 0, -2);
+            break;
+        }
     }
 
     //if hitting the rail then stop and move back and away from the railing
