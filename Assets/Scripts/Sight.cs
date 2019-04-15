@@ -40,10 +40,12 @@ public class Sight : MonoBehaviour
         RaycastHit hit;
         //do a raycast
         if (Physics.Raycast(transform.position, fwd, out hit,10))
-        { 
+        {
             //if player then move
-            if (hit.collider.tag == "Player" && currentState== GetAroundFSM.ContinueDriving)
+            if (hit.collider.tag == "Player" && currentState == GetAroundFSM.ContinueDriving)
                 DetermineDirection(hit.collider.gameObject);
+            //else if (hit.collider.tag == "Player" && _movementType == MovementType.WayPoints && currentState == GetAroundFSM.ContinueDriving)
+            //    DetermineDirection(hit.collider.gameObject);
             //otherwise ignore
             else
             {
@@ -88,9 +90,9 @@ public class Sight : MonoBehaviour
     void DetermineDirection(GameObject other)
     {
         float direction = Math.Abs(other.gameObject.transform.position.z) - Math.Abs(transform.position.z);
-        if (direction > 0)
+        if (direction > 2)
             currentState = GetAroundFSM.MoveLeft;
-        else if (direction < 0)
+        else if (direction < 2)
             currentState = GetAroundFSM.MoveRight;
         else
             currentState = GetAroundFSM.MoveLeft;
