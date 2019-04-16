@@ -6,6 +6,7 @@ using UnityEngine;
 public class Grid : MonoBehaviour
 {
     public Transform startPostion;
+    //layer that barriers are on
     public LayerMask barrierMask;
     public Vector2 gridWorldSize;
     public float nodeRadius;
@@ -17,7 +18,7 @@ public class Grid : MonoBehaviour
     float nodeDiameter;
     int gridSizeX, gridSizeY;
 
-    private void Start()
+    private void Awake()
     {
         nodeDiameter = nodeRadius * 2;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
@@ -129,7 +130,9 @@ public class Grid : MonoBehaviour
 
                 if(finalPath!=null)
                 {
-                    Gizmos.color = Color.red;
+                    if (finalPath.Contains(n))
+                        Gizmos.color = Color.red;
+                    
                 }
 
                 Gizmos.DrawCube(n.position, Vector3.one * (nodeDiameter - distance));
