@@ -16,7 +16,8 @@ public class Pathfinder : MonoBehaviour
     }
     private void Start()
     {
-        
+        grid.MakeGrid();
+        FindPath(startPositon.position, targetPosition.position);
     }
 
     // Update is called once per frame

@@ -31,11 +31,11 @@ public class Touch : MonoBehaviour
         {
             otherPlayer.GetComponent<Rigidbody>().AddForce(0, 2,7);
             otherPlayer.GetComponent<Rigidbody>().drag += .5f;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, -120, 0), .5f);
+            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, -120, 0), .5f);
         }
         else if(currentDirection == PushDirection.Left)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, -60, 0), .5f);
+            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, -60, 0), .5f);
             otherPlayer.GetComponent<Rigidbody>().AddForce(0, -2, -7);
             //GetComponent<Rigidbody>().velocity += new Vector3(0, 0, -.05f);
             otherPlayer.GetComponent<Rigidbody>().drag += .5f;
@@ -44,7 +44,7 @@ public class Touch : MonoBehaviour
         {
             //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, -60, 0), .5f);
             //To-Do add rotation to front player
-            otherPlayer.GetComponent<Rigidbody>().AddForce(-7, 2, 0);
+             otherPlayer.GetComponent<Rigidbody>().AddForce(-7, 2, 0);
         }
         else
         {
@@ -77,7 +77,7 @@ public class Touch : MonoBehaviour
     //If hitting another car
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && other.gameObject.GetComponent<Rigidbody>()!=null)
         {
             DetermineWhatSideToPushBack(other);
         }
@@ -85,7 +85,7 @@ public class Touch : MonoBehaviour
     //If no longer pushing a car
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && other.gameObject.GetComponent<Rigidbody>() != null)
         {
             currentDirection = PushDirection.None;
             otherPlayer.GetComponent<Rigidbody>().drag = 0f;
