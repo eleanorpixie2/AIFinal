@@ -17,7 +17,7 @@ public class WaypointMove : MonoBehaviour
     public int speedRangeMax;
 
     private int setNumber;
-    private Vector3 targetPoint;
+    private Transform targetPoint;
     public int maxSpeed;
     public float curSpeed;
     float accel = 1.8f;
@@ -51,7 +51,7 @@ public class WaypointMove : MonoBehaviour
         }
         //s=Vo*t + (a(t^2)/2)
         //t=(Vo/a) or (Vo/V1)/a
-        if ((Mathf.Abs(targetPoint.x) - Mathf.Abs(transform.position.x)) < 5)
+        if ((Mathf.Abs(targetPoint.position.x) - Mathf.Abs(transform.position.x)) < 5)
         {
             if (setNumber < 9)
             {
@@ -65,7 +65,15 @@ public class WaypointMove : MonoBehaviour
     {
 
         curSpeed+=Time.deltaTime*accel;
-        transform.position = Vector3.MoveTowards(transform.position, targetPoint, curSpeed * Time.deltaTime);
+        if(targetPoint.rotation.y!=0)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetPoint.rotation, 5f);
+        }
+        else if(targetPoint.rotation.y == 0 && transform.rotation.y!=0)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0,0,0), 5f);
+        }
+        transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, curSpeed * Time.deltaTime);
         if (curSpeed > maxSpeed)
         {
             curSpeed = maxSpeed;
@@ -97,31 +105,31 @@ public class WaypointMove : MonoBehaviour
         switch(setNumber)
         {
             case 1:
-                targetPoint = set1[setIndex].transform.position;
+                targetPoint = set1[setIndex].transform;
                 break;
             case 2:
-                targetPoint = set2[setIndex].transform.position;
+                targetPoint = set2[setIndex].transform;
                 break;
             case 3:
-                targetPoint = set3[setIndex].transform.position;
+                targetPoint = set3[setIndex].transform;
                 break;
             case 4:
-                targetPoint = set4[setIndex].transform.position;
+                targetPoint = set4[setIndex].transform;
                 break;
             case 5:
-                targetPoint = set5[setIndex].transform.position;
+                targetPoint = set5[setIndex].transform;
                 break;
             case 6:
-                targetPoint = set6[setIndex].transform.position;
+                targetPoint = set6[setIndex].transform;
                 break;
             case 7:
-                targetPoint = set7[setIndex].transform.position;
+                targetPoint = set7[setIndex].transform;
                 break;
             case 8:
-                targetPoint = set8[setIndex].transform.position;
+                targetPoint = set8[setIndex].transform;
                 break;
             case 9:
-                targetPoint = goal.transform.position;
+                targetPoint = goal.transform;
                 break;
         }
     }

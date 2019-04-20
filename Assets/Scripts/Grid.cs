@@ -51,7 +51,7 @@ public class Grid : MonoBehaviour
             {
                 Vector3 worldPoint = bottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
                 bool notBlocked = true;
-                if(Physics.CheckSphere(worldPoint,nodeRadius,barrierMask) /*|| !Physics.CheckSphere(worldPoint, nodeRadius, trackMask)*/)
+                if(Physics.CheckSphere(worldPoint,nodeRadius,barrierMask) || !Physics.CheckSphere(worldPoint, nodeRadius, trackMask))
                 {
                     notBlocked = false;
                 }
@@ -114,31 +114,31 @@ public class Grid : MonoBehaviour
 
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
-    //    if(grid!=null)
-    //    {
-    //        foreach(Node n in grid)
-    //        {
-    //            if(!n.isBarrier)
-    //            {
-    //                Gizmos.color = Color.yellow;
-    //            }
-    //            else
-    //            {
-    //                Gizmos.color = Color.white;
-    //            }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
+        if (grid != null)
+        {
+            foreach (Node n in grid)
+            {
+                if (!n.isBarrier)
+                {
+                    Gizmos.color = Color.yellow;
+                }
+                else
+                {
+                    Gizmos.color = Color.white;
+                }
 
-    //            if(finalPath!=null)
-    //            {
-    //                if (finalPath.Contains(n))
-    //                    Gizmos.color = Color.red;
-                    
-    //            }
+                if (finalPath != null)
+                {
+                    if (finalPath.Contains(n))
+                        Gizmos.color = Color.red;
 
-    //            Gizmos.DrawCube(n.position, Vector3.one * (nodeDiameter - distance));
-    //        }
-    //    }
-    //}
+                }
+
+                Gizmos.DrawCube(n.position, Vector3.one * (nodeDiameter - distance));
+            }
+        }
+    }
 }
