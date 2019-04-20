@@ -52,7 +52,7 @@ public class AStarMove : MonoBehaviour
             if (grid.finalPath != null)
             {
                 i = grid.finalPath.Count - 1;
-                if (targetPoint != grid.finalPath[i].position)
+                if (targetPoint != grid.finalPath[i].position && !GetComponent<Stats>().reachedGoal)
                 {
                     SetNewTargetPoint();
                 }

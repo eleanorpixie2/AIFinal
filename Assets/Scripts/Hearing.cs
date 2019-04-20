@@ -25,9 +25,9 @@ public class Hearing : MonoBehaviour
         {
             float zDistance = transform.position.z- enemyobject.transform.position.z;
             if(zDistance>0)
-                rgd.velocity += new Vector3(0, 0, -2);
-            else if(zDistance<0)
                 rgd.velocity += new Vector3(0, 0, 2);
+            else if(zDistance<0)
+                rgd.velocity += new Vector3(0, 0, -2);
 
         }
         else if(currentState == BlockingState.driving)
