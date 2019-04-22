@@ -41,7 +41,7 @@ public class Hearing : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponentInChildren<Hearing>() != null)
+        if (other.tag=="Hearing")
         {
             enemyobject = other.gameObject;
             currentState = BlockingState.blocking;
@@ -51,7 +51,7 @@ public class Hearing : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.GetComponentInChildren<Hearing>() != null)
+        if (other.tag == "Hearing")
         {
             currentState = BlockingState.driving;
         }

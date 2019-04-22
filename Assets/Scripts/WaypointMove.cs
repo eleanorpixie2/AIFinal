@@ -51,7 +51,7 @@ public class WaypointMove : MonoBehaviour
         }
         //s=Vo*t + (a(t^2)/2)
         //t=(Vo/a) or (Vo/V1)/a
-        if ((Mathf.Abs(targetPoint.position.x) - Mathf.Abs(transform.position.x)) < 5)
+        if ((Mathf.Abs(targetPoint.position.x) - Mathf.Abs(transform.position.x)) < 3)
         {
             if (setNumber < 9)
             {
@@ -65,17 +65,15 @@ public class WaypointMove : MonoBehaviour
     {
 
         curSpeed+=Time.deltaTime*accel;
-        if(targetPoint.rotation.y!=0)
-        {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetPoint.rotation, 5f);
-        }
-        else if(targetPoint.rotation.y == 0 && transform.rotation.y!=0)
-        {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0,0,0), 5f);
-        }
         transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, curSpeed * Time.deltaTime);
+        Quaternion endRotation = Quaternion.Euler(0, targetPoint.rotation.eulerAngles.y, 0);
+        if (targetPoint.rotation.eulerAngles.y == -90)
+            endRotation = Quaternion.Euler(0, 180, 0);
+        if (endRotation.y != 0)
+            transform.rotation = Quaternion.Slerp(transform.rotation, endRotation, 10*Time.deltaTime);
         if (curSpeed > maxSpeed)
         {
+            
             curSpeed = maxSpeed;
         }
 

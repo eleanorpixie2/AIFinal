@@ -59,7 +59,7 @@ public class Sight : MonoBehaviour
         }
         
         //If the car is just driving
-        if(currentState==GetAroundFSM.ContinueDriving)
+        if (currentState==GetAroundFSM.ContinueDriving)
         {
             if (intialSpeed != rgd.velocity)
             {

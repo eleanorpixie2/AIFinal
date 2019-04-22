@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Rail
   - Goal
+  - Hearing
   layers:
   - Default
   - TransparentFX
