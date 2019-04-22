@@ -7,7 +7,8 @@ public class Pathfinder : MonoBehaviour
 {
     Grid grid;
     public Transform startPositon;
-    public Transform targetPosition;
+    public List<Transform> targetPosition;
+    private int currentIndex;
     // Start is called before the first frame update
     void Awake()
     {
@@ -17,13 +18,17 @@ public class Pathfinder : MonoBehaviour
     private void Start()
     {
         grid.MakeGrid();
-        FindPath(startPositon.position, targetPosition.position);
+        currentIndex = 0;
+        FindPath(startPositon.position, targetPosition[currentIndex].position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        FindPath(startPositon.position, targetPosition.position);
+        FindPath(startPositon.position, targetPosition[currentIndex].position);
+        if ((Mathf.Abs(targetPosition[currentIndex].position.x) - Mathf.Abs(startPositon.position.x)) <= 0)
+        {
+        }
     }
 
     private void FindPath(Vector3 position1, Vector3 position2)
@@ -98,4 +103,5 @@ public class Pathfinder : MonoBehaviour
         finalPath.Reverse();
         grid.finalPath = finalPath;
     }
+
 }

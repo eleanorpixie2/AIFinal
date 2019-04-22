@@ -66,11 +66,8 @@ public class WaypointMove : MonoBehaviour
 
         curSpeed+=Time.deltaTime*accel;
         transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, curSpeed * Time.deltaTime);
-        Quaternion endRotation = Quaternion.Euler(0, targetPoint.rotation.eulerAngles.y, 0);
-        if (targetPoint.rotation.eulerAngles.y == -90)
-            endRotation = Quaternion.Euler(0, 180, 0);
-        if (endRotation.y != 0)
-            transform.rotation = Quaternion.Slerp(transform.rotation, endRotation, 10*Time.deltaTime);
+        if (targetPoint.rotation.y != 0)
+            transform.LookAt(targetPoint, transform.up);
         if (curSpeed > maxSpeed)
         {
             

@@ -14,6 +14,8 @@ public class AStarMove : MonoBehaviour
     int nodeIndex;
     float accel = 1.8f;
     float inertia = 0.9f;
+    public List<Transform> gridPoints;
+    private Transform currentGridPoint;
     public enum MovementState { Accelerating, Slowing, Stop };
     private MovementState _movementState = MovementState.Accelerating;
     // Start is called before the first frame update
@@ -21,6 +23,8 @@ public class AStarMove : MonoBehaviour
     {
         SetRunSpeed();
         nodeIndex = 0;
+        if (gridPoints != null)
+            currentGridPoint = gridPoints[0];
         if (grid.finalPath != null)
             targetPoint = grid.finalPath[nodeIndex].position;
         SetNewTargetPoint();
@@ -65,6 +69,10 @@ public class AStarMove : MonoBehaviour
 
         curSpeed += Time.deltaTime * accel;
         transform.position = Vector3.MoveTowards(transform.position, targetPoint, curSpeed * Time.deltaTime);
+        if(currentGridPoint!=null)
+        {
+            transform.LookAt(currentGridPoint, transform.up);
+        }
         if (curSpeed > maxSpeed)
         {
             curSpeed = maxSpeed;
@@ -103,6 +111,7 @@ public class AStarMove : MonoBehaviour
             GetComponent<Stats>().reachedGoal = true;
             _movementState = MovementState.Slowing;
         }
+
     }
 
     private void OnTriggerExit(Collider other)

@@ -4782,7 +4782,7 @@ MonoBehaviour:
   trackMask:
     serializedVersion: 2
     m_Bits: 1024
-  gridWorldSize: {x: 125, y: 85}
+  gridWorldSize: {x: 80, y: 8}
   nodeRadius: 0.5
   distance: 0
 --- !u!4 &1526570639
@@ -4793,7 +4793,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526570637}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -54.4, y: -0.0100736, z: -33.6}
+  m_LocalPosition: {x: -32.1, y: -0.0100736, z: -7.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4812,7 +4812,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPositon: {fileID: 1834178426}
-  targetPosition: {fileID: 1091714998}
+  targetPosition:
+  - {fileID: 0}
 --- !u!1 &1560737126
 GameObject:
   m_ObjectHideFlags: 0
@@ -5868,6 +5869,7 @@ MonoBehaviour:
   grid: {fileID: 1526570638}
   maxSpeed: 0
   curSpeed: 0
+  gridPoints: []
 --- !u!4 &1834178426 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 474874, guid: f6f35ee947f49f046b66897b4a6ae8a8,
