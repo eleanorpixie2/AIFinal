@@ -11,7 +11,7 @@ public class NavMeshMove : MonoBehaviour
     public int speedRangeMax;
 
     public int speed;
-
+    public WaypointMove wayPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +19,8 @@ public class NavMeshMove : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         goal.position = new Vector3(goal.position.x, transform.position.y, goal.transform.position.z);
         agent.destination = goal.position;
+        agent.updateRotation=true;
         
-
         //Set the max speed for this run, is random within a range every run
         SetRunSpeed();
     }

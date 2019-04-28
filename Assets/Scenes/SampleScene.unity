@@ -3485,16 +3485,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b918173cf0b24b43bcdd87ec29c109d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPostion: {fileID: 1834178426}
-  barrierMask:
+  unwalkableMask:
     serializedVersion: 2
     m_Bits: 512
-  trackMask:
-    serializedVersion: 2
-    m_Bits: 1024
   gridWorldSize: {x: 185, y: 8}
   nodeRadius: 0.5
-  distance: 0
 --- !u!4 &1526570639
 Transform:
   m_ObjectHideFlags: 0
@@ -3521,8 +3516,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edc3f7da02ce7340a958db2eae280b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPositon: {fileID: 1834178426}
-  targetPosition: {fileID: 1091714998}
+  seeker: {fileID: 1834178426}
+  target: {fileID: 1091714998}
 --- !u!1 &1554463941
 GameObject:
   m_ObjectHideFlags: 0
@@ -4224,6 +4219,7 @@ MonoBehaviour:
   grid: {fileID: 1526570638}
   maxSpeed: 0
   curSpeed: 0
+  gridPoints: []
 --- !u!4 &1834178426 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 474874, guid: f6f35ee947f49f046b66897b4a6ae8a8,
@@ -4835,51 +4831,42 @@ MonoBehaviour:
   - {fileID: 1828578538}
   - {fileID: 355557603}
   - {fileID: 1968287717}
-  set1Rotation: {x: 0, y: 0, z: 0, w: 0}
   set2:
   - {fileID: 1587382980}
   - {fileID: 1946373534}
   - {fileID: 1423210908}
   - {fileID: 1029419631}
-  set2Rotation: {x: 0, y: 0, z: 0, w: 0}
   set3:
   - {fileID: 949944207}
   - {fileID: 433158531}
   - {fileID: 1711766688}
   - {fileID: 2013745440}
-  set3Rotation: {x: 0, y: 0, z: 0, w: 0}
   set4:
   - {fileID: 2014321414}
   - {fileID: 1974434400}
   - {fileID: 565947313}
   - {fileID: 1341935675}
-  set4Rotation: {x: 0, y: 0, z: 0, w: 0}
   set5:
   - {fileID: 981101722}
   - {fileID: 846383099}
   - {fileID: 33315990}
   - {fileID: 1575577225}
-  set5Rotation: {x: 0, y: 0, z: 0, w: 0}
   set6:
   - {fileID: 718089235}
   - {fileID: 291550123}
   - {fileID: 144017879}
   - {fileID: 1474009741}
-  set6Rotation: {x: 0, y: 0, z: 0, w: 0}
   set7:
   - {fileID: 1194370875}
   - {fileID: 800008988}
   - {fileID: 78020516}
   - {fileID: 1554463941}
-  set7Rotation: {x: 0, y: 0, z: 0, w: 0}
   set8:
   - {fileID: 535624148}
   - {fileID: 1607406833}
   - {fileID: 823051038}
   - {fileID: 1163023839}
-  set8Rotation: {x: 0, y: 0, z: 0, w: 0}
   goal: {fileID: 1091714996}
-  goalRotation: {x: 0, y: 0, z: 0, w: 0}
   speedRangeMax: 25
   maxSpeed: 0
   curSpeed: 0

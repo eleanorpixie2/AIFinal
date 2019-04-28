@@ -17,7 +17,7 @@ public class WaypointMove : MonoBehaviour
     public int speedRangeMax;
 
     private int setNumber;
-    private Transform targetPoint;
+    public Transform targetPoint;
     public int maxSpeed;
     public float curSpeed;
     float accel = 1.8f;

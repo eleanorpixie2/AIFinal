@@ -25,8 +25,8 @@ public class AStarMove : MonoBehaviour
         nodeIndex = 0;
         if (gridPoints != null)
             currentGridPoint = gridPoints[0];
-        if (grid.finalPath != null)
-            targetPoint = grid.finalPath[nodeIndex].position;
+        if (grid.path != null)
+            targetPoint = grid.path[nodeIndex].worldPosition;
         SetNewTargetPoint();
     }
 
@@ -34,7 +34,7 @@ public class AStarMove : MonoBehaviour
     void Update()
     {
         if(targetPoint==null)
-            targetPoint = grid.finalPath[nodeIndex].position;
+            targetPoint = grid.path[nodeIndex].worldPosition;
 
         switch (_movementState)
         {
@@ -53,10 +53,10 @@ public class AStarMove : MonoBehaviour
         if ((Mathf.Abs(targetPoint.x) - Mathf.Abs(transform.position.x))<=0)
         {
             int i=0;
-            if (grid.finalPath != null)
+            if (grid.path != null)
             {
-                i = grid.finalPath.Count - 1;
-                if (targetPoint != grid.finalPath[i].position && !GetComponent<Stats>().reachedGoal)
+                i = grid.path.Count - 1;
+                if (targetPoint != grid.path[i].worldPosition && !GetComponent<Stats>().reachedGoal)
                 {
                     SetNewTargetPoint();
                 }
@@ -69,12 +69,11 @@ public class AStarMove : MonoBehaviour
 
         curSpeed += Time.deltaTime * accel;
         transform.position = Vector3.MoveTowards(transform.position, targetPoint, curSpeed * Time.deltaTime);
-        if(currentGridPoint!=null)
-        {
-            transform.LookAt(currentGridPoint, transform.up);
-        }
+        transform.LookAt(targetPoint, transform.up);
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         if (curSpeed > maxSpeed)
         {
+
             curSpeed = maxSpeed;
         }
 
@@ -100,8 +99,8 @@ public class AStarMove : MonoBehaviour
     void SetNewTargetPoint()
     {
         nodeIndex++;
-        if (grid.finalPath != null)
-            targetPoint = grid.finalPath[nodeIndex].position;
+        if (grid.path != null)
+            targetPoint = grid.path[nodeIndex].worldPosition;
     }
 
     private void OnTriggerEnter(Collider other)
