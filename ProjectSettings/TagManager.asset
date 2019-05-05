@@ -7,6 +7,10 @@ TagManager:
   - Rail
   - Goal
   - Hearing
+  - Barrier
+  - GameSound
+  - MasterGameSound
+  - Scene
   layers:
   - Default
   - TransparentFX

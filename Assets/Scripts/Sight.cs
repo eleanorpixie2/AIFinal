@@ -27,7 +27,7 @@ public class Sight : MonoBehaviour
         Vector3 fwd=Vector3.zero;
         //fwd vector
 
-        Vector3 start = new Vector3(transform.position.x - 1, transform.position.y + .5f, transform.position.z + .09f);
+        Vector3 start = new Vector3(transform.position.x - .7f, transform.position.y + .5f, transform.position.z + .09f);
         fwd = transform.TransformDirection(Vector3.forward);
 
         //raycast result
@@ -143,7 +143,7 @@ public class Sight : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
-        Vector3 start = new Vector3(transform.position.x - 1, transform.position.y + .5f, transform.position.z+.09f);
+        Vector3 start = new Vector3(transform.position.x - .7f, transform.position.y + .5f, transform.position.z+.09f);
         //fwd.y = start.y;
         Gizmos.DrawRay(start, fwd);
     }
